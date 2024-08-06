@@ -1,0 +1,59 @@
+{% extends 'phishAnalyzer/base.html' %}
+
+{% block content %}
+
+<div id="message">
+    <h2 style="color: yellow; font-size: 30px; font-weight: 1200;">Phishing Awareness Tool</h2>
+    <p style="font-size: 15px;">Our Phishing Awareness Tool helps you identify and prevent phishing threats attacks</p>
+    <p style="font-size: 15px;padding-bottom: 30px;">Analyse suspicious files, domains, IPs and URLs to detect malware and other breaches</p>
+</div>
+
+<div id="inputOptions">
+    <a href="#" id="fileLink" class="input-link active"><b style="color: yellow; font-weight: bold; margin-right: 1in;">FILE</b></a>
+    <a href="#" id="urlLink" class="input-link"><b style="color: yellow; font-weight: bold; margin-right: 1in;">URL</b></a>
+    <a href="#" id="searchLink" class="input-link"><b style="color: yellow; font-weight: bold; margin-right: 1in;">SEARCH</b></a>
+    <hr class="horizontal-line">
+</div>
+
+<form id="phishingFormFile" method="post" action="{% url 'scan_file' %}" enctype="multipart/form-data">
+    {% csrf_token %}
+    <div id="fileInput" class="input-option">
+        <label for="file" style="display: flex; flex-direction: column; align-items: center;">
+            <i class='bx bx-file' style="font-size: 50px; margin-bottom: 5px;"></i> 
+            <input type="file" id="file" name="file" style="display: none;" onchange="updateFileName(this)">
+            <span id="fileLabel" style="background-color: #31363f; color: white; border: 1px solid yellow; border-radius: 5px; padding: 8px 16px; cursor: pointer; display: inline-block;">Choose File</span> 
+            <span id="fileName" style="color: white; display: none;"></span>
+            <button id="submit-button" type="submit">Scan</button>
+        </label>
+    </div>
+</form>
+
+
+
+
+<form id="phishingFormUrl" method="post" action="{% url 'scan_url' %}">
+    {% csrf_token %}  
+    <div id="urlInput" class="input-option hidden">
+        <label for="url" style="display: flex; flex-direction: column; align-items: center;">
+            <i class='bx bx-world' style="font-size: 50px; margin-bottom: 5px;"></i>
+            <input type="text" id="url" name="url" placeholder="Search or scan a URL" style="width: 300px; height: 30px; border: 1px solid yellow; background-color: #31363f; color: white; border-radius: 5px;">
+            <button  id="submit-button" type="submit">Scan</button>
+        </label>
+    </div>
+</form>
+
+<form id="phishingFormSearch" method="get" action="{% url 'search' %}">
+    {% csrf_token %}  
+    <div id="searchInput" class="input-option hidden">
+        <label for="search" style="display: flex; flex-direction: column; align-items: center;">
+            <i class='bx bx-search-alt-2' style="font-size: 50px; margin-bottom: 5px;"></i>
+            <p>Search for a hash, domain, IP address, URL </p>
+            <input type="text" id="searchInput" name="query" placeholder="URL,IP address,domain,file hash" style="width: 300px; height: 30px; border: 1px solid yellow; background-color: #31363f; color: white; border-radius: 5px;">
+            <button id="submit-button" type="submit">Scan</button>
+        </label>
+    </div>
+</form>
+
+<p  style="text-align: center; font-size: 15px;">By submitting data above, you are agreeing to our Terms of Service and Privacy Notice</p>
+
+{% endblock %}

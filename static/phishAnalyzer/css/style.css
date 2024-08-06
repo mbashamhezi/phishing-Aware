@@ -1,0 +1,139 @@
+body {
+    font-family: Arial, sans-serif;
+    color: #fff;
+    background-color: #31363f;
+}
+
+header {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 20px;
+}
+
+header nav {
+    margin-right: auto;
+}
+
+#message {
+    text-align: center;
+}
+
+#inputOptions {
+    text-align: center;
+    margin-bottom: 20px;
+}
+#inputOptions a {
+    margin: 0 10px;
+}
+
+
+#submit-button{
+    background-color: yellow;
+    color: darkblue;
+    display: block;
+    margin: 0 auto;
+    padding: 10px 20px;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+    margin-top: 10px
+}
+
+
+
+
+
+
+
+
+
+
+#phishingForm {
+    text-align: center;
+}
+.input-option {
+    margin-bottom: 10px;
+}
+.hidden {
+    display: none;
+}
+
+footer {
+    text-align: center;
+    padding: 10px;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}
+
+#inputOptions{
+    color: yellow;
+    font-weight: bold;
+}
+
+#inputOptions a {
+    margin: 0 10px;
+    text-decoration: none; 
+    position: relative;
+    border-bottom: 1px solid transparent;
+    transition: border-color 0.3s; 
+}
+
+#inputOptions a.active {
+    font-weight: bold; 
+    border-bottom: 3px solid yellow; 
+}
+
+.horizontal-line {
+    margin-top: 10px;
+    height: 1px;
+    background-color: yellow; 
+    width: 55%;
+    margin: 0 auto; 
+    border: none;
+    height: 1px;
+}
+
+.horizontal-line-footer {
+    margin-top: 10px;
+    height: 1px;
+    background-color: yellow; 
+    width: 100%;
+    margin: 0 auto; 
+    border: none;
+    height: 1px;
+}
+
+.input-link.active {
+    border-bottom: 2px solid yellow; /* Add bottom border to indicate active link */
+}
+
+.nav-menu {
+    margin-right: 20px;
+}
+
+.nav-link {
+    margin-left: 10px;
+    color: white;
+    text-decoration: none;
+    position: relative;
+}
+
+.nav-link::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -2px;
+    width: 100%;
+    height: 2px;
+    background-color: yellow;
+    visibility: hidden;
+    transform: scaleX(0);
+    transition: all 0.3s ease-in-out;
+}
+
+.nav-link:hover::after {
+    visibility: visible;
+    transform: scaleX(1);
+}

@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scan Result</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #31363f;
+            padding: 20px;
+        }
+        h1 {
+            color: #333;
+        }
+        .result-container {
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            margin-top: 20px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        th, td {
+            padding: 10px;
+            border: 1px solid #ddd;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+            font-weight: bold;
+        }
+        td {
+            background-color: #fff;
+        }
+
+        .back-button {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: yellow;
+            color: darkblue;
+            border: none;
+            border-radius: 5px;
+            text-align: center;
+            text-decoration: none;
+            font-size: 16px;
+            cursor: pointer;
+            margin-top: 20px;
+            transition: background-color 0.3s;
+        }
+        .back-button:hover {
+            background-color: #31363f;
+            color: yellow;
+        }
+    </style>
+</head>
+<body>
+    <div class="result-container">
+        <h1>Scan Result</h1>
+        {% if error_message %}
+            <p>{{ error_message }}</p>
+        {% else %}
+            <p>Status: {{ status }}</p>
+            <p>Message: {{ message }}</p>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Scanner</th>
+                        <th>Detected</th>
+                        <th>Result</th>
+                        <th>Update</th>
+                        <th>Version</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for scanner, details in result.scans.items %}
+                        <tr>
+                            <td>{{ scanner }}</td>
+                            <td>{{ details.detected }}</td>
+                            <td>{{ details.result }}</td>
+                            <td>{{ details.update }}</td>
+                            <td>{% if details.version %}{{ details.version }}{% else %}N/A{% endif %}</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        {% endif %}
+        <a href="{% url 'home' %}" class="back-button">Go Back to Home Page</a>
+    </div>
+</body>
+</html>
